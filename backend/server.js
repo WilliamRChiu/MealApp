@@ -7,6 +7,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT
 
+//Install Files (i.e. Routes, Schema, Etc)
+const Meals = require('./Router/MealsRouter')
+
 //initialize app
 const app = express()
 
@@ -32,3 +35,6 @@ app.use((req,res,next)=>{
     console.log(req.body, req.method);
     next();
 });
+
+//Establishing Routes
+app.use('/api/Meal',Meals);

@@ -1,6 +1,8 @@
 const Calorie = require('../Schema/MealSchema');
 const mongoose = require("mongoose");
 
+
+
 //this gets meals on all time
 const getAllMeals = async function(req,res){
     const meals = await Calorie.find({}).sort({createdAt: -1});
@@ -148,4 +150,24 @@ const updateSpecificMeal = async function(req,res){
     }
 }
 
-module.exports = {getDayMeal, getMonthMeal, getAllMeals, deleteSpecificMeal, updateSpecificMeal, uploadMeal};
+const getSpecificMealByTitle = async function(req,res){
+    const {Title} = req.query;
+    if(!Title || !isNaN(Title)){
+        res.status(400).json({error:"Invalid Title"});
+    }
+    try{
+        const meal = await Calorie.find({Title}).sort({createdAt:-1})
+        if(!meal){
+            throw Error("Food has never been logged");
+        }
+        else{
+            res.status(200).json({meal})
+        }
+    }
+    catch(e){
+        console.log(e.message);
+        res.status(400).json({error: e.message});
+    }
+}
+
+module.exports = {getDayMeal, getSpecificMealByTitle, getMonthMeal, getAllMeals, deleteSpecificMeal, updateSpecificMeal, uploadMeal};
