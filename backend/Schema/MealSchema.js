@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const {Schema} = require("mongoose");
-const FoodItemSchema = require("./NutritionSchema")
 
 const foodSchema = new Schema({
     Title:{
@@ -19,16 +18,26 @@ const foodSchema = new Schema({
     //     minimum: 0,
     // }, Replaced with Nutrition Schema
     Nutrition:{
-        type: FoodItemSchema,
-        validate:[
-            {
-                validator: function(v){
-                    return v.length>0;
-                },
-                message:"At least one food item is required",
-            },
-        ],
-
+        Calories: {
+            type: Number,
+            required: [true, 'Calories are required'],
+            min: [0, 'Calories cannot be negative'],
+          },
+          Protein: {
+            type: Number,
+            default: 0,
+            min: [0, 'Protein cannot be negative'],
+          },
+          Carbs: {
+            type: Number,
+            default: 0,
+            min: [0, 'Carbohydrates cannot be negative'],
+          },
+          Fats: {
+            type: Number,
+            default: 0,
+            min: [0, 'Fats cannot be negative'],
+          },
     },
     MealType:{
         type:String,
