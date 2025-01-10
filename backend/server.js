@@ -9,6 +9,7 @@ const PORT = process.env.PORT
 
 //Install Files (i.e. Routes, Schema, Etc)
 const Meals = require('./Router/MealsRouter')
+const User = require('./Router/UserRouter')
 
 //initialize app
 const app = express()
@@ -38,3 +39,4 @@ app.use((req,res,next)=>{
 
 //Establishing Routes
 app.use('/api/Meal',Meals);
+app.use('/api/user', User);

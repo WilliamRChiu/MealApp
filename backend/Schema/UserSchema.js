@@ -1,6 +1,5 @@
 const { Schema} = require('mongoose')
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const User = new Schema({
@@ -20,7 +19,7 @@ const User = new Schema({
 
 User.pre('save', async function (next) {
     if(!this.isModified('password')){
-        next();
+        return next();
     }
     try{
         const salt = await bcrypt.genSalt(10);
@@ -40,9 +39,9 @@ User.methods.matchPassword = async function (enteredPassword){
 
 User.statics.login = async function(email, password){
     if(!email || !password){
-        res.status(400).json({message: "Please fill in all fields"});
+        throw Error("Please fill in all fields");
     }
-    const user = await this.find({email}).select('+password');
+    const user = await this.findOne({email}).select('+password');
     if(!user){
         throw new Error('Invalid email or password');
     }

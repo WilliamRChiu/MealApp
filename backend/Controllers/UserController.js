@@ -1,10 +1,10 @@
-require('dotenv').config
+require('dotenv').config();
 const User=  require('../Schema/UserSchema');
 const jwt = require('jsonwebtoken');
 const validator = require('validator')
 
 const createToken = (_id) =>{
-    return jwt.sign({_id: _id}, process.env.SECRET, {expiresIn: '3d'});
+    return jwt.sign({_id: _id}, process.env.SECRET_KEY, {expiresIn: '3d'});
 }
 
 const signUpUser = async(req,res)=>{
@@ -19,11 +19,11 @@ const signUpUser = async(req,res)=>{
         throw Error("Password is not Strong Enough");
     }
     try{
-        const exists = await User.findOne({email});
+        const exists = await User.findOne({email: email});
         if(exists){
             throw Error("Email in use already");
         }
-        const user = await User.create({email, password});//this also auto saves to the database, therefore invoking the pre command for saves
+        const user = await User.create({email: email, password: password});//this also auto saves to the database, therefore invoking the pre command for saves
         const token = createToken(user._id);
         res.status(200).json({email, token});
     }
@@ -45,3 +45,5 @@ const loginUser = async(req,res)=>{
         res.status(400).json({message: e.message});
     }
 }
+
+module.exports = {loginUser, signUpUser}
