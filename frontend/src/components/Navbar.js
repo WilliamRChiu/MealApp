@@ -8,7 +8,7 @@ const Navbar = function(){
                     <h1>Meal App</h1>
                 </Link>
                 <nav>
-                    <Link to='/api/user/login'>Login</Link>
+                    <Link to='/login'>Login</Link>
                     <Link to='/api/user/signup'>Signup</Link>
                 </nav>
             </div>

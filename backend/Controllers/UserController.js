@@ -35,14 +35,26 @@ const signUpUser = async(req,res)=>{
 
 const loginUser = async(req,res)=>{
     const {email, password} = req.body
+    let EmptyField = []
     try{
+        if(!email){
+            EmptyField.push('email')
+        }
+        else if(!password){
+            EmptyField.push('password')
+        }
         const user = await User.login(email, password);
         const token = createToken(user._id);
         res.status(200).json({email, token});
     }
     catch(e){
         console.log(e.message);
-        res.status(400).json({message: e.message});
+        if(EmptyField.length){
+            res.status(400).json({error: e.message, EmptyField: EmptyField});
+        }
+        else{
+            res.status(400).json({error: e.message})
+        }
     }
 }
 

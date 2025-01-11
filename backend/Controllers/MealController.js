@@ -99,18 +99,17 @@ const getMonthMeal = async function(req,res){
 const uploadMeal = async function(req,res){
     const{Title, MealType, Nutrition} = req.body;
     let EmptyFields = [];
-    if (MealType && !['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Drink', 'Other'].includes(MealType)) {
-        res.status(400).json({error:"Not a valid MealType", EmptyField: EmptyFields})
-      }
-      
     if (!Nutrition.Calories) {
         EmptyFields.push("Calories")
       }
     if(!Title){
         EmptyFields.push("Title");
     }
+    if (MealType && !['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Drink', 'Other'].includes(MealType)) {
+        return res.status(400).json({error:"Not a valid MealType"})
+    }
     if(EmptyFields.length){
-        res.status(400).json({error:"Please fill in all highlighted fields", EmptyField: EmptyFields});
+        return res.status(400).json({error:"Please fill in all highlighted fields", EmptyField: EmptyFields});
     }
     try{
         const meal = await Calorie.create({Title, Nutrition, MealType});
@@ -118,7 +117,7 @@ const uploadMeal = async function(req,res){
     }
     catch(e){
         console.log(e.message);
-        res.status(404).json({message: e.message});
+        res.status(404).json({error: e.message});
     }
 }
 
