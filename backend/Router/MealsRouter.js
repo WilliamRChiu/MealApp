@@ -6,7 +6,7 @@ const{getDayMeal, getMonthMeal, getSpecificMealByTitle, getAllMeals, deleteSpeci
 
 MealRouter.get('/',getAllMeals);
 
-MealRouter.post('/Upload', uploadMeal);
+MealRouter.post('/', uploadMeal);
 
 MealRouter.patch('/Update/:id',updateSpecificMeal);
 
