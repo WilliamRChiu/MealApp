@@ -97,20 +97,23 @@ const getMonthMeal = async function(req,res){
 
 //This gets a form to upload meals for the (/) route
 const uploadMeal = async function(req,res){
-    const{Title, Items, MealType, Calories, Protein, Carbs, Fats} = req.body;
+    const{Title, MealType, Nutrition} = req.body;
     let EmptyFields = [];
-    if (!MealType ||!['Breakfast', 'Lunch', 'Dinner', 'Snack'].includes(MealType)) {
-        EmptyFields.push('MealType');
+    if (MealType && !['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Drink', 'Other'].includes(MealType)) {
+        res.status(400).json({error:"Not a valid MealType", EmptyField: EmptyFields})
       }
       
-    if (!Calories) {
+    if (!Nutrition.Calories) {
         EmptyFields.push("Calories")
       }
+    if(!Title){
+        EmptyFields.push("Title");
+    }
     if(EmptyFields.length){
-        res.status(400).json({error:"Please fill in all highlighted fields", EmptyFields: EmptyFields});
+        res.status(400).json({error:"Please fill in all highlighted fields", EmptyField: EmptyFields});
     }
     try{
-        const meal = await Calorie.create({Title, Nutrition: Items, MealType, Calories, Protein, Carbs, Fats});
+        const meal = await Calorie.create({Title, Nutrition, MealType});
         res.status(200).json(meal);
     }
     catch(e){

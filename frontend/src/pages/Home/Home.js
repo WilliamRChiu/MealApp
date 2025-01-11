@@ -1,5 +1,6 @@
 import React from "react";
-import '../Home/Home.css'
+import '../Home/Home.css';
+import MealForm from "../../components/MealForm/MealForm";
 
 const Home = function(){
 
@@ -11,6 +12,7 @@ const Home = function(){
                 </header>
             
             </div>
+            <MealForm/>
         </div>
     )
 }
