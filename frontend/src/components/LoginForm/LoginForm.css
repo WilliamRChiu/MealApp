@@ -1,7 +1,8 @@
 :root {
     --primary: #1aac83;
     --error: #e7195a;
-  }
+}
+
 div.error {
     padding: 10px;
     background: #ffefef;
@@ -9,7 +10,34 @@ div.error {
     color: var(--error);
     border-radius: 4px;
     margin: 20px 0;
-  }
-  input.error{
-    border: 1px solid var(--error)
-  }
+}
+
+input.error {
+    border: 1px solid var(--error);
+}
+
+button, a.signUp {
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none; /* Removes underline for anchor tags */
+}
+
+button:hover, a.signUp:hover {
+    background-color: #159e72; /* Darker shade on hover */
+}
+
+.buttonContainer {
+    display: flex;
+    width: 10%;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    flex-direction: column; /* Stacks buttons vertically */
+    gap: 10px; /* Adds space between buttons */
+    margin-top: 20px; /* Adds space above the button container */
+}

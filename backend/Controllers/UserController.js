@@ -8,9 +8,22 @@ const createToken = (_id) =>{
 }
 
 const signUpUser = async(req,res)=>{
-    const {email, password} = req.body
+    let EmptyField = []
+    const {email, password, confirmPassword} = req.body
     if(!email||!password){
+        if(!email){
+            EmptyField.push('email');
+        }
+        else{
+            EmptyField.push('password');
+        }
         res.status(400).json({error: "Fill in all sections first"})
+    }
+    if(!confirmPassword){
+        EmptyField.push('confirmPassword')
+    }
+    if(password!=confirmPassword){
+        throw Error("Passwords Do Not Match");
     }
     if (!validator.isEmail(email)){
         throw Error("Email is not valid");
@@ -29,7 +42,7 @@ const signUpUser = async(req,res)=>{
     }
     catch(e){
         console.log(e.message);
-        res.status(400).json({message: e.message});
+        res.status(400).json({error: e.message, EmptyField: EmptyField});
     }
 }
 

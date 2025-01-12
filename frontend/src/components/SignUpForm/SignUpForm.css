@@ -1,0 +1,84 @@
+/* SignUpForm.css */
+
+:root {
+    --primary: #1aac83;
+    --error: #e7195a;
+}
+
+.SignUpContainer { /* Parent container for centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; /* Light background for contrast */
+}
+
+.SignUp {
+    width: 400px;
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.SignUp h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.SignUp label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.SignUp input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.SignUp input.error {
+    border: 1px solid var(--error);
+    background-color: #ffe6e6;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #179a75; /* Darker shade on hover */
+}
+
+button.redirectLogin {
+    background-color: #555;
+}
+
+button.redirectLogin:hover {
+    background-color: #333;
+}
+
+div.error {
+    padding: 10px;
+    background: #ffefef;
+    border: 1px solid var(--error);
+    color: var(--error);
+    border-radius: 4px;
+    margin: 10px 0;
+}

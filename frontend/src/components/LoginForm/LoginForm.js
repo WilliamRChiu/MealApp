@@ -1,14 +1,17 @@
 import '../LoginForm/LoginForm.css'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const LoginForm = () =>{
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
-    const[EmptyField, setEmptyField] = useState('')
+    const[EmptyField, setEmptyField] = useState([])
     const[error, setError] = useState(null)
 
     const handleSubmit = async(event)=>{
         event.preventDefault()
+        setError(null)
+        setEmptyField([])
         const Data = {email: email, password: password}
         const submission = await fetch('http://localhost:4000/api/user/login',{
             method:"POST",
@@ -47,6 +50,10 @@ const LoginForm = () =>{
             />
             <button>Submit</button>
             {error && <div className='error'>{error}</div>}
+            {/* Sign Up Button */}
+            <div className="buttonContainer">
+                <Link to="/signup" className="signUp">Sign Up</Link>
+            </div>
         </form>
 
     )
