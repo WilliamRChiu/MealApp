@@ -10,6 +10,7 @@ const createToken = (_id) =>{
 const signUpUser = async(req,res)=>{
     let EmptyField = []
     const {email, password, confirmPassword} = req.body
+    try{
     if(!email||!password){
         if(!email){
             EmptyField.push('email');
@@ -17,10 +18,11 @@ const signUpUser = async(req,res)=>{
         else{
             EmptyField.push('password');
         }
-        res.status(400).json({error: "Fill in all sections first"})
+        throw Error("Fill in all fields")
     }
     if(!confirmPassword){
         EmptyField.push('confirmPassword')
+        throw Error("Fill in all fields")
     }
     if(password!=confirmPassword){
         throw Error("Passwords Do Not Match");
@@ -31,7 +33,6 @@ const signUpUser = async(req,res)=>{
     if(!validator.isStrongPassword(password)){
         throw Error("Password is not Strong Enough");
     }
-    try{
         const exists = await User.findOne({email: email});
         if(exists){
             throw Error("Email in use already");
