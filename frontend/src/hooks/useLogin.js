@@ -2,37 +2,41 @@ import { useState } from "react";
 import { useAuthenticationContext } from "./useAuthenticationContext";//lets me update global user properties
 
 
-export const useSignUp = () =>{
+export const useLogin = () =>{
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
+    const [EmptyField, setEmptyField] = useState([]);
     const {dispatch} = useAuthenticationContext();
     
 
-    const signUp = async(email, password, confirmPassword) =>{
+    const Login = async(email, password) =>{
         setLoading(true);
         setError(null);
-        if(password!=confirmPassword){
-            setError("Passwords Do Not Match.  Please Try Again");
-            setLoading(false);
-            return
+        setEmptyField([]);
+        if(!email){
+            setEmptyField([...EmptyField,"email"]);
         }
-        const Data = {email: email, password: password, confirmPassword: confirmPassword};
+        if(!password){
+            setEmptyField([...EmptyField,"password"]);
+        }
+        const Data = {email: email, password: password};
         try{
-            const signUpResponse = await fetch('http://localhost:4000/api/user/signup',{
+            const LoginResponse = await fetch('http://localhost:4000/api/user/login',{
                 method:"POST",
                 headers:{
                     'Content-Type':'application/json',
                 },
                 body:JSON.stringify(Data)
             })
-            const fetchResponse = await signUpResponse.json()
-            if(!signUpResponse.ok){
+            const fetchResponse = await LoginResponse.json()
+            if(!LoginResponse.ok){
                 setLoading(false);
                 setError(fetchResponse.error || "An unexpected error occured");
             }
-            else if(signUpResponse.ok){
+            else if(LoginResponse.ok){
                 setLoading(false);
-                localStorage.setItem('user',JSON.stringify(signUpResponse));
+                setEmptyField([]);
+                localStorage.setItem('user',JSON.stringify(LoginResponse));
                 dispatch({type:"LOGIN", payload: fetchResponse});
                 
             }
@@ -42,5 +46,5 @@ export const useSignUp = () =>{
             setError("Failed to connect to server.  Please try again later")
         }
     }
-    return {signUp, loading, error}
+    return {Login, loading, error, EmptyField}
 }

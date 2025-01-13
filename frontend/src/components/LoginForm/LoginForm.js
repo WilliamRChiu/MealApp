@@ -1,33 +1,20 @@
 import '../LoginForm/LoginForm.css'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useLogin } from '../../hooks/useLogin'
 
 const LoginForm = () =>{
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
-    const[EmptyField, setEmptyField] = useState([])
-    const[error, setError] = useState(null)
+    const {Login, error, loading, EmptyField} = useLogin();
 
     const handleSubmit = async(event)=>{
         event.preventDefault()
-        setError(null)
-        setEmptyField([])
-        const Data = {email: email, password: password}
-        const submission = await fetch('http://localhost:4000/api/user/login',{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(Data)
-        })
-        const Json = await submission.json();
-        if(!submission.ok){
-            setError(Json.error || "An Unexpected Error Occurred")
-            setEmptyField(Json.EmptyField || [])
+        try{
+            const LoginSubmission = await Login(email, password);
         }
-        else{
-            setError(null)
-            setEmptyField([])
+        catch(e){
+            console.log("Fetch Error: " + e);
         }
     }
 

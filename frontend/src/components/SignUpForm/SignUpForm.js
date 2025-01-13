@@ -7,7 +7,7 @@ const SignUpForm = () =>{
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('');
-    const {signUp, error, loading, emptyField} = useSignUp();
+    const {signUp, error, loading} = useSignUp();
 
     const handleSubmit = async(event) =>{
         event.preventDefault()
