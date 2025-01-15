@@ -11,7 +11,7 @@ const LoginForm = () =>{
     const handleSubmit = async(event)=>{
         event.preventDefault()
         try{
-            const LoginSubmission = await Login(email, password);
+            await Login(email, password);
         }
         catch(e){
             console.log("Fetch Error: " + e);
@@ -35,7 +35,7 @@ const LoginForm = () =>{
             onChange={(event)=>{setPassword(event.target.value)}}
             className={EmptyField.includes('password')?'error':''}
             />
-            <button>Submit</button>
+            <button type="submit" disabled={loading}>Submit</button>
             {error && <div className='error'>{error}</div>}
             {/* Sign Up Button */}
             <div className="buttonContainer">

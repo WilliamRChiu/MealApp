@@ -1,8 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import '../MealForm/MealForm.css'
+import { useAuthenticationContext } from "../../hooks/useAuthenticationContext";
 
 const MealForm = function(){
+
+    const {user} = useAuthenticationContext();
+
     const [Title, setTitle] = useState("");
     const [Calories, setCalories] = useState('');
     const [Protein, setProtein] = useState('');
@@ -26,6 +30,12 @@ const MealForm = function(){
         if (Protein) Nutrition.Protein = Number(Protein);
         if (Carbs) Nutrition.Carbs = Number(Carbs);
         if (Fats) Nutrition.Fats = Number(Fats);
+
+        if(!user){
+            setError("You must be logged in");
+            return;
+        }
+
         const meal = {Title, Nutrition: Nutrition, MealType};
 
         //post request
@@ -33,7 +43,8 @@ const MealForm = function(){
             method: 'POST',
             body: JSON.stringify(meal),
             headers:{
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'Authorization' : `Bearer ${user.token}`
             }
         });
         //await the response

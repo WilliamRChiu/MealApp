@@ -29,10 +29,11 @@ export const useSignUp = () =>{
             if(!signUpResponse.ok){
                 setLoading(false);
                 setError(fetchResponse.error || "An unexpected error occured");
+                console.log(error);
             }
             else if(signUpResponse.ok){
                 setLoading(false);
-                localStorage.setItem('user',JSON.stringify(signUpResponse));
+                localStorage.setItem('user',JSON.stringify(fetchResponse));
                 dispatch({type:"LOGIN", payload: fetchResponse});
                 
             }

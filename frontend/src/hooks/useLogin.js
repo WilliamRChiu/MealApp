@@ -36,7 +36,8 @@ export const useLogin = () =>{
             else if(LoginResponse.ok){
                 setLoading(false);
                 setEmptyField([]);
-                localStorage.setItem('user',JSON.stringify(LoginResponse));
+                localStorage.setItem('user',JSON.stringify(fetchResponse));
+                //update auth context
                 dispatch({type:"LOGIN", payload: fetchResponse});
                 
             }

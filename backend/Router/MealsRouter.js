@@ -1,8 +1,9 @@
 const { Router } = require('express')
 const MealRouter = Router();
 const{getDayMeal, getMonthMeal, getSpecificMealByTitle, getAllMeals, deleteSpecificMeal, updateSpecificMeal, uploadMeal} = require('../Controllers/MealController')
+const AuthenticationChecker = require('../middleware/AuthenticationCheck')
 
-
+MealRouter.use(AuthenticationChecker);
 
 MealRouter.get('/',getAllMeals);
 

@@ -1,0 +1,97 @@
+/* Navbar.css */
+
+/* General styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+header {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* Text color */
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Container styling */
+.NavContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Title styling */
+.NavContainer h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: white;
+}
+
+/* Links container */
+.NavContainer nav {
+    display: flex;
+    gap: 15px;
+}
+
+/* Links styling */
+.NavContainer a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Links hover effect */
+.NavContainer a:hover {
+    background-color: white;
+    color: #4CAF50;
+    border-radius: 5px;
+}
+
+/* Logout button styling */
+.NavContainer button {
+    background-color: white;
+    color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Logout button hover effect */
+.NavContainer button:hover {
+    background-color: #45a049; /* Darker green */
+    color: white;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .NavContainer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    nav {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+}
