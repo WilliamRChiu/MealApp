@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMealContext } from '../../hooks/useMealContext';
 
 const MealCard = ({ meal }) => {
     return (

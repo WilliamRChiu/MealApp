@@ -1,41 +1,157 @@
-:root {
-    --primary: #1aac83;
-    --error: #e7195a;
-  }
-  body {
-    background: #f1f1f1;
-    margin: 0;
-    font-family: "Poppins";
-  }
-  label, input {
-    display: block;
-  }
-  input {
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+
+html, body {
+    height: 100%;
     width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  form button {
-    background: var(--primary);
-    border: 0;
-    color: #fff;
-    padding: 10px;
-    font-family: "Poppins";
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  div.error {
-    padding: 10px;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto !important;
+}
+
+
+.mealFormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+    font-family: 'Montserrat', sans-serif;
+    padding: 40px 0;
+    overflow: visible;
+}
+
+
+.addMealForm {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 500px;
+    max-width: 90%;
+    min-height: fit-content;
+    animation: fadeIn 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.addMealForm:hover {
+    transform: scale(1.02);
+}
+
+
+.addMealForm h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+
+.addMealForm label {
+    display: block;
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+    font-size: 16px;
+}
+
+
+.addMealForm input, 
+.addMealForm select {
+    width: calc(100% - 24px);
+    max-width: 450px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: #F5F5F5;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+
+.addMealForm input:focus, 
+.addMealForm select:focus {
+    border: 2px solid #FF8E9E;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(255, 142, 158, 0.6);
+}
+
+
+.addMealForm fieldset {
+    border: 2px solid #FF8E9E;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    margin: 15px 0;
+}
+
+
+.addMealForm legend {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FF8E9E;
+    padding: 0 10px;
+}
+
+
+.error {
+    padding: 12px;
     background: #ffefef;
-    border: 1px solid var(--error);
-    color: var(--error);
-    border-radius: 4px;
-    margin: 20px 0;
-  }
-  input.error{
-    border: 1px solid var(--error)
-  }
+    border: 2px solid #e7195a;
+    color: #e7195a;
+    border-radius: 8px;
+    margin: 15px 0;
+    max-width: 450px;
+}
+
+
+.addMealForm button {
+    width: calc(100% - 24px);
+    max-width: 450px;
+    padding: 14px;
+    background: linear-gradient(135deg, #FF8E9E, #FF3CAC);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.addMealForm button:hover {
+    background: linear-gradient(135deg, #E63950, #C50052);
+    transform: translateY(-3px);
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .addMealForm {
+        width: 90%;
+        padding: 30px;
+    }
+}

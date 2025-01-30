@@ -9,7 +9,7 @@ const Navbar = function(){
         logout();
     }
     return(
-        <header>
+        <header className="navbarElement">
             <div className="NavContainer">
                 <Link to='/'>
                     <h1>Meal App</h1>

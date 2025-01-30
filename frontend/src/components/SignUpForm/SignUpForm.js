@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { use, useState } from "react";
+import { useState } from "react";
 import '../SignUpForm/SignUpForm.css';
 import { useSignUp } from "../../hooks/useSignUp";
 
@@ -50,7 +50,7 @@ const SignUpForm = () =>{
                     required
                 />
 
-                <button type="submit" disabled={loading}>Sign Up</button>
+                <button type="submit" disabled={loading} className="signUp">Sign Up</button>
 
                 {error && <div className='error'>{error}</div>}
 

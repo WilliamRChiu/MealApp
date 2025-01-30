@@ -1,97 +1,120 @@
-/* Navbar.css */
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-/* General styles */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+/* Navbar Container */
+.navbarElement {
+    background: linear-gradient(135deg, #A7C7E7, #D8BFD8); /* Matches previous components */
+    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    border-bottom: 4px solid rgba(255, 255, 255, 0.5); /* Adds a polished border */
+    border-radius: 0px 0px 15px 15px; /* Rounds the bottom edges */
 }
 
-/* Header styling */
-header {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* Text color */
-    padding: 10px 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-/* Container styling */
-.NavContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* Navbar Inner Content */
+.navbarElement .NavContainer {
     width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Title styling */
-.NavContainer h1 {
-    font-size: 1.8rem;
-    margin: 0;
+/* Meal App Title */
+.navbarElement h1 {
+    font-size: 28px;
+    font-weight: 700;
     color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    transition: transform 0.3s ease-in-out;
+}
+.navbarElement a {
+    text-decoration: none;
 }
 
-/* Links container */
-.NavContainer nav {
+/* Hover Effect on Title */
+.navbarElement h1:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Links */
+.navbarElement nav {
     display: flex;
     gap: 15px;
 }
 
-/* Links styling */
-.NavContainer a {
+
+.navbarElement nav a {
     color: white;
+    font-size: 16px;
+    font-weight: 600;
     text-decoration: none;
-    font-size: 1rem;
-    padding: 5px 10px;
-    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-/* Links hover effect */
-.NavContainer a:hover {
-    background-color: white;
-    color: #4CAF50;
-    border-radius: 5px;
+/* Login & Signup Buttons */
+.navbarElement nav a:first-child {
+    background: #2491ff;
 }
 
-/* Logout button styling */
-.NavContainer button {
-    background-color: white;
-    color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-left: 15px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.navbarElement nav a:last-child {
+    background: #8f2d8f;
 }
 
-/* Logout button hover effect */
-.NavContainer button:hover {
-    background-color: #45a049; /* Darker green */
+/* Hover Effects */
+.navbarElement nav a:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+/* User Email */
+.navbarElement span {
     color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 15px;
 }
 
-/* Responsive design */
-@media screen and (max-width: 768px) {
-    .NavContainer {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+/* Logout Button */
+.navbarElement button {
+    background: #e74c3c;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
 
-    nav {
-        margin-top: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
+/* Logout Button Hover */
+.navbarElement button:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbarElement .NavContainer {
+        flex-direction: column;
         gap: 10px;
     }
+    
+    .navbarElement nav {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
 
-    button {
-        margin-top: 10px;
+    .navbarElement button {
+        width: 100%;
     }
 }

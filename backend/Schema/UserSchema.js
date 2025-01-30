@@ -14,7 +14,7 @@ const User = new Schema({
         required: true,
         select: false,
         minLength: [6, "Please ensure your password is more than 6 characters"], 
-    }
+    },
 });
 
 User.pre('save', async function (next) {

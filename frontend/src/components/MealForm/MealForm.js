@@ -69,6 +69,7 @@ const MealForm = function(){
 
 
     return(
+        <div className="mealFormContainer">
         <form className="addMealForm" onSubmit = {postSubmisson}>
             <h3><b>Add new Meal</b></h3>
             <label>Meal Title:</label>
@@ -134,6 +135,7 @@ const MealForm = function(){
             <button>Add Meal</button>
             {error && <div className="error">{error}</div>}
         </form>
+        </div>
     )
 }
 

@@ -5,15 +5,23 @@ import { useAuthenticationContext } from "../../hooks/useAuthenticationContext";
 
 const Home = function(){
 
-    // const { user } = useAuthenticationContext();
-    // useEffect();
+    const { user } = useAuthenticationContext();
+    useEffect(()=>{
+        const fetchMeal = async() =>{
+            const response = await fetch('http://localhost:4000/api/Meal/', {
+                headers:{
+                    'Authorization':`Bearer ${user.token}`
+                }
+            })
+            const json = await response.json();
+            if(response.ok){
+                
+            }
+        }
+    })
     return(
         <div className="Home">
             <div className="Meals">
-                <header>
-                    <h1>Meal Tracker</h1>
-                </header>
-            
             </div>
             <MealForm/>
         </div>
